@@ -17,7 +17,7 @@ group "admin" do
 end
 
 if node[:rax_ruby_app][:db_type] == 'postgres'
-  node.set[:postgresql][:password][:postgres] = 'password'
+  node.set[:postgresql][:password][:postgres] = node[:rax_ruby_app][:db_admin_password]
   include_recipe 'postgresql::server'
 elsif node[:rax_ruby_app][:db_type] == 'mysql'
   #do mysql stuff
